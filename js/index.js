@@ -1,10 +1,8 @@
 document.addEventListener("click", () => {
     boxmaterial.wireframe = !boxmaterial.wireframe;
     spherematerial.wireframe = !spherematerial.wireframe;
-
+    torusmaterial.wireframe = !torusmaterial.wireframe;
 });
-
-
 
 function animate() {
 
@@ -15,6 +13,9 @@ function animate() {
     cube.rotation.z += 0.02;
 
     sphere.rotation.x += 0.02;
+
+    torusKnot.rotation.y += 0.02;
+    torusKnot.rotation.z += 0.02;
 
     renderer.render( scene, camera );
 }
@@ -43,8 +44,16 @@ const sphere = new THREE.Mesh( spheregeometry, spherematerial );
 sphere.scale.set(0.9,0.9,0.9);
 sphere.position.set(2,2,0);
 
+// Gabriela
+const torusgeometry = new THREE.TorusKnotGeometry( 1, 0.4, 64, 8 );
+const torusmaterial = new THREE.MeshBasicMaterial( { color: 0xD6D7FF } );
+torusmaterial.wireframe = true;
+const torusKnot = new THREE.Mesh( torusgeometry, torusmaterial );
+torusKnot.scale.set(0.9,0.9,0.9);
+torusKnot.position.set(-2,2,0);
+
 camera.position.z = 5;
 
-scene.add( cube, sphere );
+scene.add( cube, sphere, torusKnot);
 
 animate();
