@@ -29,6 +29,7 @@ const switchCam = document.getElementById("btnSwitchCam").addEventListener("clic
 });
 
 
+
 const cameraBtn = document.getElementById("btnCamera").addEventListener("click", (e) => {
     e.preventDefault();
     if(!isCamera1) {
@@ -72,12 +73,56 @@ function animate(now) {
     d20.scale.z += Math.sin(d20pulse)*delta*5;
     d20pulse++;
 
-    date = Date.now() * 0.001;
-    sphere.position.set(
-        Math.cos(date) * orbitRadius,
-        0,
-        Math.sin(date) * orbitRadius
-    );
+    date = Date.now() * 0.002;
+    
+
+    document.addEventListener("keydown", (e) => {
+        e.preventDefault();
+        var code = e.which || e.keyCode;
+        if (code == '39') {
+            sphere.position.set(
+                Math.cos(date) * orbitRadius,
+                0,
+                Math.sin(date) * orbitRadius
+            );
+        }
+
+        if (code == '37') {
+            cube.position.set(
+                Math.sin(date) * orbitRadius,
+                0,
+                Math.cos(date) * orbitRadius
+            );
+        }
+
+        if (code == '40') {
+            d20.position.set(
+                0,
+                Math.sin(date) * orbitRadius,
+                Math.cos(date) * orbitRadius
+            );
+        }
+
+        if (code == '38') {
+            torusKnot.position.set(
+                0,
+                Math.cos(date) * orbitRadius,
+                Math.sin(date) * orbitRadius
+            );
+        }
+    })
+
+    // cube.position.set(
+    //     Math.sin(date) * orbitRadius,
+    //     0,
+    //     Math.cos(date) * orbitRadius
+    // );
+
+    // d20.position.set(
+    //     Math.sin(date) * orbitRadius,
+    //     0,
+    //     Math.cos(date) * orbitRadius
+    // );
 
     renderer.render( scene, renderCamera );
     requestAnimationFrame( animate );
@@ -88,8 +133,8 @@ let isPerspective;
 let isCamera1;
 let renderCamera;
 let d20pulse = 1;
-
 let then = 0;
+let speed = 0;
 
 const scene = new THREE.Scene();
 let camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 1000 );
