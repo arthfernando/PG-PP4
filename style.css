@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap');
+* {
+    /* elemento respeita limite de tamanho, mesmo com padding */
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+}
+
+.container {
+    width: 95%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botoes div button{
+    margin-right: 10px;
+    margin-top: 20px;
+    width: 180px;
+    border: none;
+    padding: 10px;
+    border-radius: 2px;
+    font-family: 'Open-sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.botoes div button:hover{
+    transition: 0.4s;
+    cursor: pointer;
+    border: 2px solid #e8e6e6;
+    background-color: black;
+    color: #e8e6e6;
+}
